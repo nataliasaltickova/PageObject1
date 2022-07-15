@@ -60,18 +60,18 @@ public class MoneyTransferTest {
     @Test
     void shouldTransferMoneyFromOneCardToSecond() {
         var transferPage = dashBoardPage.transferPage(DataHelper.cards[1]);
-        transferPage.transferMoney(DataHelper.cards[0], "199");
+        transferPage.transferMoney(DataHelper.cards[0], "200");
         var balance0 = dashBoardPage.getCardBalance(DataHelper.cards[0].getId());
         var balance1 = dashBoardPage.getCardBalance(DataHelper.cards[1].getId());
 
-        assertEquals(10000, balance0);
-        assertEquals(10000, balance1);
+        assertEquals(9800, balance0);
+        assertEquals(10200, balance1);
     }
 
     @Test
     void shouldNullTransferMoneyFromOneCardToAnother() {
-        var transferPage = dashBoardPage.transferPage(DataHelper.cards[1]);
-        transferPage.transferMoney(DataHelper.cards[0], "0");
+        var transferPage = dashBoardPage.transferPage(DataHelper.cards[0]);
+        transferPage.transferMoney(DataHelper.cards[1], "0");
         var balance0 = dashBoardPage.getCardBalance(DataHelper.cards[0].getId());
         var balance1 = dashBoardPage.getCardBalance(DataHelper.cards[1].getId());
 
@@ -82,13 +82,13 @@ public class MoneyTransferTest {
 
     @Test
     void shouldNegativeTransferMoneyFromOneCardToAnother() {
-        var transferPage = dashBoardPage.transferPage(DataHelper.cards[1]);
-        transferPage.transferMoney(DataHelper.cards[0], "-1");
+        var transferPage = dashBoardPage.transferPage(DataHelper.cards[0]);
+        transferPage.transferMoney(DataHelper.cards[1], "-1");
         var balance0 = dashBoardPage.getCardBalance(DataHelper.cards[0].getId());
         var balance1 = dashBoardPage.getCardBalance(DataHelper.cards[1].getId());
 
-        assertEquals(10000, balance0);
-        assertEquals(10000, balance1);
+        assertEquals(10001, balance0);//ожидаем, что минус валидация не пропустит и перевод будет на 1 руб.
+        assertEquals(9999, balance1);
 
     }
 

@@ -19,6 +19,8 @@ public class TransferPage {
         $("span[data-test-id= amount] input").click();
         $("span[data-test-id= amount] input").sendKeys(Keys.chord(SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("span[data-test-id= amount] input").setValue(money);
+        $("[data-test-id=\"from\"] input").click();
+        $("[data-test-id=\"from\"] input").sendKeys(Keys.END,Keys.chord(SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id=\"from\"] input").setValue(from.getNumber());
         $("[data-test-id= action-transfer]").click();
     }
