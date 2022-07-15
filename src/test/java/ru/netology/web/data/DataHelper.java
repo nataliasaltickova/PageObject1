@@ -39,6 +39,5 @@ public class DataHelper {
 
     public static Card[] cards = {new Card("5559_0000_0000_0001", "10_000", "92df3f1c-a033-48e6-8390-206f6b1f56c0"),
             new Card("5559_0000_0000_0002", "10_000", "0f3f5c2a-249e-4c3d-8287-09f7a039391d")};
-
 }
 

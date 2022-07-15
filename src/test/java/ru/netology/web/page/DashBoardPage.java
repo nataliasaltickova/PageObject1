@@ -21,19 +21,15 @@ public class DashBoardPage {
         heading.shouldBe(Condition.visible);
     }
 
-    public void transferPage(DataHelper.Card to, DataHelper.Card from, String money) {
-        //метод transferPage без возвр.значения
+    public TransferPage transferPage(DataHelper.Card to) {
         $("[data-test-id=\"" + to.getId() + "\"]>button").click();
-        $("span[data-test-id= amount]").click();
-        $("span[data-test-id= amount] input").setValue(money);
-        $("[data-test-id=\"from\"] input").setValue(from.getNumber());
-        $("[data-test-id= action-transfer]").click();
+        return new TransferPage();
     }
 
-    public int getCardBalance(String number) {
+    public int getCardBalance(String dataTestId) {
         for (SelenideElement element : cards) {
             val attr = element.attr("data-test-id");
-            if (Objects.equals(attr, number)) {
+            if (Objects.equals(attr, dataTestId)) {
                 return extractBalance(element.text());
             }
         }
@@ -47,3 +43,4 @@ public class DashBoardPage {
         return Integer.parseInt(value);
     }
 }
+

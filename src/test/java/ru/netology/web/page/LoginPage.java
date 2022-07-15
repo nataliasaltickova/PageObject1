@@ -11,6 +11,5 @@ public class LoginPage {
         $("[data-test-id= password] input").setValue(authInfo.getPassword());
         $("[data-test-id= action-login]").click();
         return new VerificationPage();//возвращает новый объект VerificationPage
-
     }
 }
